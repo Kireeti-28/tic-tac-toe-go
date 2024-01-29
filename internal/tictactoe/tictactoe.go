@@ -5,6 +5,8 @@ import (
 	"fmt"
 )
 
+const ERR_MSG_1 = "Invalid choice. Spot choosen was already used\n"
+
 type TicTacToe struct {
 	board [][]int
 }
@@ -59,55 +61,55 @@ func (t *TicTacToe) updateBoard(choice int, player int) error {
 		switch choice {
 		case 1:
 			if t.board[0][0] != 0 {
-				return errors.New("Invalid choice. Spot choosen was already used\n")
+				return errors.New(ERR_MSG_1)
 			}
 			t.board[0][0] = player
 			break
 		case 2:
 			if t.board[0][1] != 0 {
-				return errors.New("Invalid choice. Spot choosen was already used\n")
+				return errors.New(ERR_MSG_1)
 			}
 			t.board[0][1] = player
 			break
 		case 3:
 			if t.board[0][2] != 0 {
-				return errors.New("Invalid choice. Spot choosen was already used\n")
+				return errors.New(ERR_MSG_1)
 			}
 			t.board[0][2] = player
 			break
 		case 4:
 			if t.board[1][0] != 0 {
-				return errors.New("Invalid choice. Spot choosen was already used\n")
+				return errors.New(ERR_MSG_1)
 			}
 			t.board[1][0] = player
 			break
 		case 5:
 			if t.board[1][1] != 0 {
-				return errors.New("Invalid choice. Spot choosen was already used\n")
+				return errors.New(ERR_MSG_1)
 			}
 			t.board[1][1] = player
 			break
 		case 6:
 			if t.board[1][2] != 0 {
-				return errors.New("Invalid choice. Spot choosen was already used\n")
+				return errors.New(ERR_MSG_1)
 			}
 			t.board[1][2] = player
 			break
 		case 7:
 			if t.board[2][0] != 0 {
-				return errors.New("Invalid choice. Spot choosen was already used\n")
+				return errors.New(ERR_MSG_1)
 			}
 			t.board[2][0] = player
 			break
 		case 8:
 			if t.board[2][1] != 0 {
-				return errors.New("Invalid choice. Spot choose was already used\n")
+				return errors.New(ERR_MSG_1)
 			}
 			t.board[2][1] = player
 			break
 		case 9:
 			if t.board[2][2] != 0 {
-				return errors.New("Invalid choice. Spot choose was already used\n")
+				return errors.New(ERR_MSG_1)
 			}
 			t.board[2][2] = player
 			break
@@ -146,6 +148,8 @@ func (t * TicTacToe) Start() {
 			player++
 			player = player % 2
 		}
+
+		fmt.Printf("Congratulations!!👏\nPlayer %d WOW HURRY!!🥳 \n", player + 1)
 		break
 	}
 }
