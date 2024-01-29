@@ -3,6 +3,7 @@ package tictactoe
 import (
 	"errors"
 	"fmt"
+	"os"
 )
 
 const ERR_MSG_1 = "Invalid choice. Spot choosen was already used\n"
@@ -15,6 +16,18 @@ func NewTicTacToe() *TicTacToe{
 	return &TicTacToe{
 		board: [][]int{{0,0,0},{0,0,0},{0,0,0}},
 	}
+}
+
+func (t *TicTacToe) isBoardFilled() bool {
+	for _,val := range t.board {
+		for _,val1 := range val {
+			if val1 == 0 {
+				return false
+			}
+		}
+	}
+
+	return true
 }
 
 func (t *TicTacToe) resetBoard() {
@@ -32,6 +45,11 @@ func (t *TicTacToe) isGameOver() bool {
 	firstCol := t.board[0][0] == t.board[1][0] && t.board[1][0] == t.board[2][0] && t.board[0][0] > 0
 	secondCol := t.board[0][1] == t.board[1][1] && t.board[1][1] == t.board[2][1] && t.board[1][1] > 0
 	thirdCol := t.board[0][2] == t.board[1][2] && t.board[1][2] == t.board[2][2] && t.board[1][2] > 0
+
+	if !(firstRow || secondRow || thirdRow || diagonalLR || diagonalRL || firstCol || secondCol || thirdCol) && t.isBoardFilled() {
+		fmt.Printf("Well Played Guys!! 👏 \nGame ended up in a draw.\n")
+		os.Exit(0)
+	}
 
 	return firstRow || secondRow || thirdRow || diagonalLR || diagonalRL || firstCol || secondCol || thirdCol
 }
@@ -147,6 +165,7 @@ func (t * TicTacToe) Start() {
 			t.drawBoard()
 			player++
 			player = player % 2
+			fmt.Println("=================")
 		}
 
 		fmt.Printf("Congratulations!!👏\nPlayer %d WOW HURRY!!🥳 \n", player + 1)
